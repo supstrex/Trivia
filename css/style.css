@@ -1,0 +1,435 @@
+/* global settings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+/* video settings */
+#myVideo {
+  position: fixed;
+  top: -25%;
+  left: -12%;
+  min-height: 100%;
+  min-width: 100%;
+  object-fit: cover;
+}
+/* settings of hided main boxes */
+.options_box,
+.start_btn,
+.players_box,
+.quiz_box,
+.result_box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 20px;
+}
+/* settings of showen main boxes */
+.options_box.activeOption,
+.players_box.activeInfo,
+.quiz_box.activeQuiz,
+.result_box.activeResult {
+  opacity: 1;
+  z-index: 5;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+/* start button */
+.start_btn button {
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(29, 70, 134);
+  padding: 1rem 2rem;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  background: rgba(237, 211, 119, 1);
+  cursor: pointer;
+}
+.start_btn button:hover {
+  background: rgb(255, 217, 79);
+}
+/* player box settings */
+.players_box {
+  width: 30rem;
+  background: rgba(237, 211, 119, 1);
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.players_box .players-title {
+  height: 60px;
+  width: 100%;
+  border-bottom: 1px solid rgb(29, 70, 134);
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  border-radius: 5px 5px 0 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(29, 70, 134);
+}
+.players_box .players-list {
+  padding: 15px 30px;
+}
+.players_box .players-list .player {
+  margin: 0.5rem auto;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  border-color: rgb(40, 89, 168, 0.5);
+  display: block;
+  color: rgb(40, 89, 168, 1);
+}
+/* settings of players and option boxes  */
+.players_box .buttons,
+.options_box .buttons {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 20px;
+  border-top: 1px solid rgb(29, 70, 134);
+}
+.players_box .buttons button,
+.options_box .buttons button {
+  margin: 0 5px;
+  height: 40px;
+  width: 100px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid rgb(40, 89, 168);
+  transition: all 0.3s ease;
+}
+/* settings of player information box */
+.player_information_box {
+  display: flex;
+  opacity: 0;
+}
+.player_information_box.activePlayerInformation {
+  pointer-events: none;
+  transition: all 0.3s ease;
+  opacity: 1;
+  z-index: 5;
+  transform: translate(0, 0) scale(1);
+}
+.player_box {
+  display: flex;
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(29, 70, 134);
+  padding: 1rem 2rem;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  background: rgba(237, 211, 119, 1);
+  margin: 1.5rem auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.player_box.active {
+  background-color: rgb(40, 89, 168);
+  color: #fff;
+}
+.player_information_box .xp {
+  padding-left: 1rem;
+}
+/* option box settings */
+/* not complete! */
+.options_box {
+  width: 35rem;
+  background: rgba(237, 211, 119, 1);
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  padding: 0.5rem 0rem;
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(29, 70, 134);
+}
+.options_box input,
+select {
+  margin: 0.3rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  border-color: rgb(40, 89, 168, 0.5);
+  display: inline-block;
+  color: rgb(40, 89, 168, 1);
+}
+.questions_number,
+.category,
+.dificulty_level {
+  padding-left: 2rem;
+}
+.questions_number {
+  margin-top: 1rem;
+}
+.dificulty_level {
+  margin-bottom: 0.5rem;
+}
+#number_of_questions {
+  margin-left: 2.3rem;
+}
+#dificulty_options {
+  margin-left: 7.3rem;
+}
+/* quiz box settings */
+/* not complete! */
+.quiz_box {
+  top: 24rem;
+  width: 550px;
+  background: rgba(237, 211, 119, 1);
+  border-radius: 20px;
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.quiz_box header {
+  position: relative;
+  z-index: 2;
+  height: 70px;
+  padding: 0 30px;
+  background: rgba(237, 211, 119, 1);
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+}
+.quiz_box header .title {
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(29, 70, 134);
+}
+.quiz_box header .timer {
+  color: #004085;
+  background: rgb(245, 245, 245);
+  border: 1px solid rgb(29, 70, 134);
+  height: 45px;
+  padding: 0 8px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 145px;
+}
+.quiz_box header .timer .time_left_txt {
+  font-weight: 400;
+  font-size: 17px;
+  user-select: none;
+}
+.quiz_box header .timer .timer_sec {
+  font-size: 18px;
+  font-weight: 500;
+  height: 30px;
+  width: 45px;
+  line-height: 30px;
+  text-align: center;
+  user-select: none;
+}
+.quiz_box header .time_line {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 3px;
+  background: rgb(29, 70, 134);
+}
+/* settings of quize box's section */
+section {
+  padding: 25px 30px 20px 30px;
+  background: rgb(245, 245, 245);
+}
+section .que_text {
+  font-size: 25px;
+  font-weight: 600;
+  color: rgb(29, 70, 134);
+}
+section .option_list {
+  padding: 20px 0px;
+  display: block;
+  color: rgb(29, 70, 134);
+}
+section .option_list .option {
+  background: rgb(216, 236, 245);
+  border: 1px solid rgb(176, 222, 245);
+  border-radius: 5px;
+  padding: 8px 15px;
+  font-size: 17px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+section .option_list .option:last-child {
+  margin-bottom: 0px;
+}
+section .option_list .option:hover {
+  color: #004085;
+  background: rgb(176, 222, 245);
+  border: 1px solid rgb(176, 222, 245);
+}
+section .option_list .option.correct {
+  color: #155724;
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+}
+section .option_list .option.incorrect {
+  color: #721c24;
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+}
+section .option_list .option.disabled {
+  pointer-events: none;
+}
+/* settings of quize box's footer */
+footer {
+  height: 60px;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgb(29, 70, 134);
+  color: rgb(29, 70, 134);
+}
+footer .total_que span {
+  display: flex;
+  user-select: none;
+}
+footer .total_que span p {
+  font-weight: 500;
+  padding: 0 5px;
+}
+footer .total_que span p:first-child {
+  padding-left: 0px;
+}
+footer button {
+  height: 40px;
+  padding: 0 13px;
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  color: #fff;
+  border-radius: 5px;
+  background: rgb(40, 89, 168);
+  border: 1px solid rgb(40, 89, 168);
+  line-height: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.95);
+  transition: all 0.3s ease;
+}
+footer button:hover {
+  background: rgb(29, 70, 134);
+}
+footer button.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+/* settings of result box */
+.result_box {
+  background-color: rgba(237, 211, 119, 1);
+  border-radius: 20px;
+  display: flex;
+  padding: 25px 30px;
+  width: 450px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.result_box .complete_text {
+  padding-bottom: 0.5rem;
+  font-size: 24px;
+  font-weight: 600;
+  color: rgb(29, 70, 134);
+}
+.result_box .score_text span {
+  display: flex;
+  margin: 10px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(29, 70, 134);
+}
+.result_box .score_text span p {
+  padding: 0 4px;
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(29, 70, 134);
+}
+.result_box .buttons {
+  display: flex;
+  margin: 20px 0;
+}
+.result_box .buttons button {
+  margin: 0 10px;
+  height: 45px;
+  padding: 0 20px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid rgb(40, 89, 168);
+  transition: all 0.3s ease;
+}
+/* settings of buttuns*/
+.buttons button.restart {
+  color: #fff;
+  background: rgb(40, 89, 168);
+}
+.buttons button.restart:hover {
+  background: rgb(29, 70, 134);
+}
+.buttons button.continue-1,
+button.continue-2 {
+  color: #fff;
+  background: rgb(40, 89, 168);
+}
+.buttons button.continue-1:hover,
+button.continue-2:hover {
+  background: rgb(29, 70, 134);
+}
+.buttons button.quit_1 {
+  color: rgb(40, 89, 168);
+  background: #fff;
+}
+.buttons button.quit_1:hover {
+  color: #fff;
+  background: rgb(40, 89, 168);
+}
+.buttons button.quit_2 {
+  color: rgb(40, 89, 168);
+  background: #fff;
+}
+.buttons button.quit_2:hover {
+  color: #fff;
+  background: rgb(40, 89, 168);
+}
+.buttons button.quit {
+  color: rgb(40, 89, 168);
+  background: #fff;
+}
+.buttons button.quit:hover {
+  color: #fff;
+  background: rgb(40, 89, 168);
+}

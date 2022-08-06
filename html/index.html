@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trivia</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <video autoplay muted loop id="myVideo">
+      <source src="../video/BackgroundVideo.mp4" type="video/mp4" />
+    </video>
+
+    <div class="start_btn"><button>Start The Game</button></div>
+
+    <div class="players_box">
+      <div class="players-title"><span>Please Enter Your Name</span></div>
+      <div class="players-list">
+        <input
+          type="text"
+          class="player"
+          id="player1"
+          value="Player1"
+          onfocus="this.value = this.value=='Player1'?'':this.value;"
+          onblur="this.value = this.value==''?'Player1':this.value;"
+        />
+        <input
+          type="text"
+          class="player"
+          id="player2"
+          value="Player2"
+          onfocus="this.value = this.value=='Player2'?'':this.value;"
+          onblur="this.value = this.value==''?'Player2':this.value;"
+        />
+        <input
+          type="text"
+          class="player"
+          id="player3"
+          value="Player3"
+          onfocus="this.value = this.value=='Player3'?'':this.value;"
+          onblur="this.value = this.value==''?'Player3':this.value;"
+        />
+        <input
+          type="text"
+          class="player"
+          id="player4"
+          value="Player4"
+          onfocus="this.value = this.value=='Player4'?'':this.value;"
+          onblur="this.value = this.value==''?'Player4':this.value;"
+        />
+      </div>
+      <div class="buttons">
+        <button class="quit_1">Exit</button>
+        <button class="continue-1">Continue</button>
+      </div>
+    </div>
+    <!-- Player information box -->
+    <div class="player_information_box">
+      <div class="player_box">
+        <div id="name1">Player1:</div>
+        <div class="xp" id="xp1">0 XP</div>
+      </div>
+      <div class="player_box">
+        <div id="name2">Player2:</div>
+        <div class="xp" id="xp2">0 XP</div>
+      </div>
+      <div class="player_box">
+        <div id="name3">Player3:</div>
+        <div class="xp" id="xp3">0 XP</div>
+      </div>
+      <div class="player_box">
+        <div id="name4">Player4:</div>
+        <div class="xp" id="xp4">0 XP</div>
+      </div>
+    </div>
+    <!-- Options box -->
+    <div class="options_box">
+      <div class="questions_number">
+        <label id="number_of_questions_label" for="number_of_questions">
+          Enter The Number Of Questions:
+        </label>
+        <input
+          type="number"
+          min="1"
+          max="10"
+          id="number_of_questions"
+          value="10"
+        />
+      </div>
+      <div class="category">
+        <label for="category_options">Choose Category:</label>
+        <select
+          id="category_options"
+          name="category_options"
+          form="category_form"
+        >
+          <option value="9">General Knowledge</option>
+          <option value="17">Science & Nature</option>
+          <option value="11">Entertainment: Film</option>
+          <option value="14">Entertainment: Television</option>
+          <option value="12">Entertainment: Music</option>
+          <option value="21">Sports</option>
+          <option value="22">Geography</option>
+          <option value="23">History</option>
+        </select>
+      </div>
+      <div class="dificulty_level">
+        <label for="dificulty_options">Choose Dificulty Level:</label>
+        <select
+          id="dificulty_options"
+          name="dificulty_options"
+          form="dificulty_form"
+        >
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+      <div class="buttons">
+        <button class="quit_2">Exit</button>
+        <button class="continue-2">Continue</button>
+      </div>
+    </div>
+
+    <!-- Quiz Box -->
+    <div class="quiz_box">
+      <header>
+        <div class="title">Choose The Correct Answer</div>
+        <div class="timer">
+          <div class="time_left_txt">Time Left</div>
+          <div class="timer_sec">15</div>
+        </div>
+        <div class="time_line"></div>
+      </header>
+      <section>
+        <div class="que_text">
+          <!-- Here I've inserted question from JavaScript -->
+        </div>
+        <div class="option_list">
+          <!-- Here I've inserted options from JavaScript -->
+        </div>
+      </section>
+      <!-- footer of Quiz Box -->
+      <footer>
+        <div class="total_que">
+          <!-- Here I've inserted Question Count Number from JavaScript -->
+        </div>
+        <button class="next_btn">Next Question</button>
+      </footer>
+    </div>
+    <!-- Result Box -->
+    <div class="result_box">
+      <div class="icon">
+        <i class="fas fa-crown"></i>
+      </div>
+      <div class="complete_text">You've Completed The Game</div>
+      <div class="score_text">
+        <!-- Here I've inserted Score Result from JavaScript -->
+      </div>
+      <div class="buttons">
+        <button class="restart">Restart The Game</button>
+        <button class="quit">Quit</button>
+      </div>
+    </div>
+    <!-- Inside this JavaScript file I've coded all Quiz Codes -->
+    <script src="../js/index.js"></script>
+  </body>
+</html>
